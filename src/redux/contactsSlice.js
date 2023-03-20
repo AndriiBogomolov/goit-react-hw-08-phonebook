@@ -1,19 +1,21 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { fetchContacts, addContacts, deleteContact } from './operations';
-
-const contactInitialState = {
-  items: [],
-  isLoading: false,
-  error: null,
-};
+import {
+  fetchContacts,
+  addContacts,
+  deleteContact,
+  editContact,
+} from './operations';
 
 const extraActions = [fetchContacts, addContacts, deleteContact];
 const getActions = type => extraActions.map(action => action[type]);
 
 const contactsSlice = createSlice({
   name: 'contacts',
-
-  initialState: contactInitialState,
+  initialState: {
+    items: [],
+    isLoading: false,
+    error: null,
+  },
 
   extraReducers: builder =>
     builder
