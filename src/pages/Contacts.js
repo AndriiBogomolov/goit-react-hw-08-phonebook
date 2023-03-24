@@ -1,33 +1,42 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchContacts } from '../redux/operations';
-
-import { Container } from '../components/App/App.styled';
+import { ContactsList } from '../components/ContactList/ContactList';
 import ContactForm from '../components/ContactForm/ContactForm';
-import ContactList from '../components/ContactList/ContactList';
-//import Filter from '../components/Filter/Filter';
-import Section from '../components/Section/Section';
+import { ContactFilter } from '../components/Filter/Filter';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectError, selectIsLoading } from 'redux/selector';
+import { useEffect } from 'react';
+import { fetchContacts } from 'redux/operations';
+import { Loader } from '../components/Loader/Loader';
 
 function Contacts() {
-  const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
   return (
-    <Container>
-      <Section title="Phonebook">
-        <ContactForm />
-      </Section>
-      <Section title="Contacts">
-        {isLoading && !error && <b>Request in progress...</b>}
-        <ContactList />
-      </Section>
-    </Container>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        fontSize: 40,
+        color: '#010101',
+      }}
+    >
+      <h1>Phonebook</h1>
+
+      <ContactForm />
+
+      <h2 style={{ marginBottom: 10 }}> Contacts</h2>
+
+      <ContactFilter />
+      {isLoading && !error && <Loader />}
+      <ContactsList />
+    </div>
   );
 }
 export default Contacts;

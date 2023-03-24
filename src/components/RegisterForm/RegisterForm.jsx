@@ -1,38 +1,80 @@
+import { useReducer } from 'react';
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/operations';
 import css from './RegisterForm.module.css';
 
+function reducer(state, action) {
+  switch (action.type) {
+    case 'name':
+      return {
+        ...state,
+        name: action.payload,
+      };
+    case 'password':
+      return {
+        ...state,
+        password: action.payload,
+      };
+    case 'email':
+      return {
+        ...state,
+        email: action.payload,
+      };
+    default:
+      return state;
+  }
+}
+
 export const RegisterForm = () => {
+  const [state, setState] = useReducer(reducer, {
+    name: '',
+    email: '',
+    password: '',
+  });
+
   const dispatch = useDispatch();
+
+  const handleChangeInput = e => {
+    setState({ type: e.target.name, payload: e.target.value });
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
-    const form = e.currentTarget;
-    dispatch(
-      register({
-        name: form.elements.name.value,
-        email: form.elements.email.value,
-        password: form.elements.password.value,
-      })
-    );
-    form.reset();
+    dispatch(register(state));
   };
 
   return (
-    <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
-      <label className={css.label}>
-        Username
-        <input type="text" name="name" />
+    <form action="" onSubmit={handleSubmit} className={css.registerForm}>
+      <label htmlFor="">
+        Name
+        <input
+          onChange={handleChangeInput}
+          name="name"
+          type="text"
+          className={css.registerInput}
+        />
       </label>
-      <label className={css.label}>
+      <label htmlFor="">
         Email
-        <input type="email" name="email" />
+        <input
+          onChange={handleChangeInput}
+          name="email"
+          type="email"
+          className={css.registerInput}
+        />
       </label>
-      <label className={css.label}>
+      <label htmlFor="">
         Password
-        <input type="password" name="password" />
+        <input
+          onChange={handleChangeInput}
+          name="password"
+          type="password"
+          className={css.registerInput}
+        />
       </label>
-      <button type="submit">Register</button>
+      <button type="submit" className={css.registerBtn}>
+        register
+      </button>
     </form>
   );
 };

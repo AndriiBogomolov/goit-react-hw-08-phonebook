@@ -6,16 +6,19 @@ import {
   editContact,
 } from './operations';
 
+const contactInitialState = {
+  items: [],
+  isLoading: false,
+  error: null,
+};
+
 const extraActions = [fetchContacts, addContacts, deleteContact];
 const getActions = type => extraActions.map(action => action[type]);
 
 const contactsSlice = createSlice({
   name: 'contacts',
-  initialState: {
-    items: [],
-    isLoading: false,
-    error: null,
-  },
+
+  initialState: contactInitialState,
 
   extraReducers: builder =>
     builder
@@ -24,6 +27,12 @@ const contactsSlice = createSlice({
       })
       .addCase(addContacts.fulfilled, (state, action) => {
         state.items.push(action.payload);
+      })
+      .addCase(editContact.fulfilled, (state, action) => {
+        const index = state.items.findIndex(
+          contact => contact.id === action.payload.id
+        );
+        state.items.splice(index, 1, action.payload);
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
         const index = state.items.findIndex(

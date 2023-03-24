@@ -31,55 +31,62 @@ export default function ContactForm() {
   const handleSubmit = e => {
     e.preventDefault();
 
-    const newContact = {
-      id: nanoid(),
+    const contact = {
+      id: nanoid(6),
       name: name,
       number: number,
     };
-
     if (
       allContacts.some(
-        item => item.name.toLowerCase() === newContact.name.toLowerCase()
+        item =>
+          item.name.toLowerCase() === contact.name.toLowerCase() ||
+          item.number === contact.number
       )
     ) {
-      alert(`Contact ${newContact.name} already exist`);
+      alert(`Contact ${contact.name} already exist`);
       return;
     }
-    dispatch(addContacts(newContact));
+    dispatch(addContacts(contact));
 
     setName('');
     setNumber('');
   };
 
   return (
-    <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
-      <label className={css.formLabel}>Name </label>
-      <input
-        className={css.formName}
-        type="text"
-        name="name"
-        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-        title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-        placeholder=" "
-        required
-        onChange={handleChange}
-        value={name}
-      />
-      <label className={css.formLabel}>Number </label>
-      <input
-        className={css.formNumber}
-        type="tel"
-        name="number"
-        pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-        title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-        placeholder=" "
-        required
-        onChange={handleChange}
-        value={number}
-      />
-      <button className={css.formBtn} type="submit">
-        Add contact
-      </button>
+    <form onSubmit={handleSubmit} className={css.form}>
+      <div>
+        <label className={css.labelForm}>
+          Name
+          <input
+            className={css.input}
+            type="text"
+            name="name"
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            required
+            value={name}
+            onChange={handleChange}
+          />
+        </label>
+
+        <label className={css.labelForm}>
+          Number
+          <input
+            className={css.input}
+            type="tel"
+            name="number"
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+            value={number}
+            onChange={handleChange}
+          />
+        </label>
+
+        <button type="submit" className={css.formBtn}>
+          Add contact
+        </button>
+      </div>
     </form>
   );
 }
