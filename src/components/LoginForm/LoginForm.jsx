@@ -58,7 +58,7 @@ export const LoginForm = () => {
         />
       </label>
       <button type="submit" className={css.loginBtn}>
-        login
+        log in
       </button>
     </form>
   );
