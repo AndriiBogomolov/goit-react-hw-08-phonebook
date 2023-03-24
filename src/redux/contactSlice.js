@@ -3,7 +3,7 @@ import {
   fetchContacts,
   addContacts,
   deleteContact,
-  editContact,
+  aditContact,
 } from './operations';
 
 const contactInitialState = {
@@ -28,7 +28,7 @@ const contactsSlice = createSlice({
       .addCase(addContacts.fulfilled, (state, action) => {
         state.items.push(action.payload);
       })
-      .addCase(editContact.fulfilled, (state, action) => {
+      .addCase(aditContact.fulfilled, (state, action) => {
         const index = state.items.findIndex(
           contact => contact.id === action.payload.id
         );

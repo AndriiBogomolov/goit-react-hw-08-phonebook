@@ -1,46 +1,42 @@
 .form {
-    display: flex;
-    flex-direction: column;
-    display: block;
-    max-width: 480px;
-    margin: 0 auto;
-    padding: 15px;
-    border: 2px solid;
+  display: flex;
+  justify-content: flex-start;
+  min-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 2px solid;
 }
 
-.formName,
-.formNumber {
-    display: flex;
-    flex-direction: column;
-    margin: 0.5rem auto;
-    align-items: center;
-    font-size: large;
-    text-align: left;
-    padding: 0.5rem 15rem 0.5rem 1rem;
+.input {
+  display: flex;
+  flex-direction: column;
+  margin: 10px auto;
+  align-items: center;
+  font-size: large;
+  text-align: left;
+  padding: 5px 15px;
 }
 
 .formBtn {
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 6px;
-    color: rgb(2, 2, 2);
-    flex-grow: 1;
-    font-family: SFProText-Regular, Helvetica, Arial, sans-serif;
-    font-size: 15px;
-    height: 36px;
-    line-height: 20px;
-    margin-left: 8px;
-    margin-right: 6px;
-    min-width: 185px;
-    padding: 0 16px 0 16px;
-    cursor: pointer;
-    border: 1px solid #181818;
-    
+  margin-top: 20px;
+  margin-bottom: 10px;
+  background-color: rgba(139, 195, 233, 0.8);
+  color: rgb(2, 2, 2);
+  flex-grow: 1;
+  font-family: SFProText-Regular, Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  height: 36px;
+  line-height: 20px;
+  margin-left: 8px;
+  margin-right: 6px;
+  min-width: 185px;
+  padding: 0 16px 0 16px;
+  cursor: pointer;
+  border: 1px solid #181818;
+  border-radius: 4px;
 }
 
-.formBtn:active {
-    background-color: rgb(78, 128, 230);
-    cursor: pointer;
+.formBtn:hover {
+  background-color: rgb(34, 77, 163);
+  cursor: pointer;
 }
-

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { editContact } from '../../redux/operations';
+import { aditContact } from '../../redux/operations';
 import css from './ContactListItem.module.css';
 
 export const ContactsListItem = ({
@@ -18,7 +18,7 @@ export const ContactsListItem = ({
   const handleChangeMode = () => {
     if (isEdit) {
       setIsEdit(prev => !prev);
-      dispatch(editContact({ id, name, number }));
+      dispatch(aditContact({ id, name, number }));
       return;
     }
     setIsEdit(prev => !prev);
