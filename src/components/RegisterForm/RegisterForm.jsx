@@ -73,7 +73,7 @@ export const RegisterForm = () => {
         />
       </label>
       <button type="submit" className={css.registerBtn}>
-        register
+        Register
       </button>
     </form>
   );

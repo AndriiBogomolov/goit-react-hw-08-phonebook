@@ -6,6 +6,9 @@
   color: rgb(45, 157, 194);
 }
 
-.register {
+.register,
+.login {
   margin-right: 30px;
+  text-decoration: none;
 }
+

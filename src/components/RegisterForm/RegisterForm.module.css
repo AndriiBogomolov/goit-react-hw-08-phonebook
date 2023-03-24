@@ -6,6 +6,7 @@
   margin: 0 auto;
   padding: 20px;
   border: 2px solid;
+  border-radius: 10px;
 }
 
 .registerInput {
@@ -36,6 +37,6 @@
   border-radius: 4px;
 }
 .registerBtn:hover {
-  background-color: rgb(34, 77, 163);
+  background-color: rgb(154, 114, 180);
   cursor: pointer;
 }
