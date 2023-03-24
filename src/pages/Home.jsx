@@ -16,7 +16,7 @@ const styles = {
 export default function Home() {
   return (
     <div style={styles.container}>
-      <h1 style={styles.title}>Welcome to the Phonebook!</h1>
+      <h1 style={styles.title}>Your own phonebook</h1>
     </div>
   );
 }
